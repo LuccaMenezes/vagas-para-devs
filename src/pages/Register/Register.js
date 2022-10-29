@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 const Register = () => {
   return (
     <div>
-      <h1>Cadastre-se!</h1>
+      <h1>Cadastre-se</h1>
+      <p>Crie seu usuário e publique suas vagas!</p>
       <form>
          <label>
             <span>Nome:</span>
@@ -26,14 +27,24 @@ const Register = () => {
             />
          </label>
          <label>
-            <span>Nome:</span>
+            <span>Senha:</span>
             <input 
-               type="text" 
-               name="displayName" 
+               type="password" 
+               name="password" 
                required
-               placeholder="Nome do usuário"
+               placeholder="Insira sua senha"
             />
          </label>
+         <label>
+            <span>Confirme sua senha:</span>
+            <input 
+               type="password" 
+               name="confirmPassword" 
+               required
+               placeholder="Confirme sua senha"
+            />
+         </label>
+         <button className='btn'>Cadastrar</button>
       </form>
     </div>
   )
