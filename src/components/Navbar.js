@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
+import { useAuthentication } from '../hooks/useAuthentication'
+import { useAuthValue } from '../context/AuthContext'
+
 
 const Navbar = () => {
-  return (
+   const { logout } = useAuthentication();
+   const { user } = useAuthValue();
+   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
          Vagas Para <span>DEVS</span>
@@ -16,7 +21,9 @@ const Navbar = () => {
             Home
           </NavLink>
       </li>
-      <li>
+      {!user && (
+         <>
+            <li>
           <NavLink
             to="/login"
             className={({ isActive }) => (isActive ? styles.active : "")}
@@ -32,6 +39,28 @@ const Navbar = () => {
             Cadastrar
           </NavLink>
       </li>
+         </>
+      )}
+      {user && (
+         <>
+         <li>
+       <NavLink
+         to="/posts/create"
+         className={({ isActive }) => (isActive ? styles.active : "")}
+       >
+         Novo Post
+       </NavLink>
+   </li>
+   <li>
+       <NavLink
+         to="/dashboard"
+         className={({ isActive }) => (isActive ? styles.active : "")}
+       >
+         Dashboard
+       </NavLink>
+   </li>
+      </>
+      )}
       <li>
           <NavLink
             to="/about"
