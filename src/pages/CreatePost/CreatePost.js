@@ -7,9 +7,12 @@ import { useAuthValue } from "../../context/AuthContext";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [body, setBody] = useState("");
+  const [requisitos, setRequisitos] = useState("");
+  const [atividades, setAtividades] = useState("");
+  const [senioridade, setSenioridade] = useState("");
+  const [salario, setSalario] = useState("");
   const [tags, setTags] = useState([]);
+  const [tags2, setTags2] = useState([]);
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
@@ -22,18 +25,11 @@ const CreatePost = () => {
     e.preventDefault();
     setFormError("");
 
-    // validate image
-    try {
-      new URL(image);
-    } catch (error) {
-      setFormError("A imagem precisa ser uma URL.");
-    }
-
     // create tags array
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
     // check values
-    if (!title || !image || !tags || !body) {
+    if (!title || !requisitos || !tags || !atividades || !senioridade || !salario) {
       setFormError("Por favor, preencha todos os campos!");
     }
 
@@ -41,8 +37,10 @@ const CreatePost = () => {
 
     console.log({
       title,
-      image,
-      body,
+      requisitos,
+      atividades,
+      senioridade,
+      salario,
       tags: tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
@@ -52,9 +50,12 @@ const CreatePost = () => {
 
     insertDocument({
       title,
-      image,
-      body,
+      requisitos,
+      atividades,
+      senioridade,
+      salario,
       tags: tagsArray,
+      tags2: tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
     });
@@ -65,53 +66,83 @@ const CreatePost = () => {
 
   return (
     <div className={styles.create_post}>
-      <h2>Criar post</h2>
-      <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
+      <h2>Dados da Vaga</h2>
+      <p>Conte-nos um pouco mais sobre a vaga!</p>
       <form onSubmit={handleSubmit}>
         <label>
-          <span>Título:</span>
+          <span>Cargo:</span>
           <input
             type="text"
             name="text"
             required
-            placeholder="Pense num bom título..."
+            placeholder="Qual o cargo para essa vaga?"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
-        </label>
+        </label>       
         <label>
-          <span>URL da imagem:</span>
-          <input
-            type="text"
-            name="image"
-            required
-            placeholder="Insira uma imagem que representa seu post"
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
-          />
-        </label>
-        <label>
-          <span>Conteúdo:</span>
+          <span>Requisitos:</span>
           <textarea
-            name="body"
+            name="requisitos"
             required
-            placeholder="Insira o conteúdo do post"
-            onChange={(e) => setBody(e.target.value)}
-            value={body}
+            placeholder="Quais os requisitos para essa vaga?"
+            onChange={(e) => setRequisitos(e.target.value)}
+            value={requisitos}
           ></textarea>
         </label>
         <label>
-          <span>Tags:</span>
+          <span>Tecnologias Necessárias:</span>
           <input
             type="text"
             name="tags"
             required
-            placeholder="Insira as tags separadas por vírgula"
+            placeholder="Insira as tecnologias necessárias separadas por vírgula."
             onChange={(e) => setTags(e.target.value)}
             value={tags}
           />
         </label>
-        {!response.loading && <button className="btn">Criar post!</button>}
+        <label>
+          <span>Tecnologias Desejáveis:</span>
+          <input
+            type="text"
+            name="tags2"
+            required
+            placeholder="Insira as tecnologias desejáveis separadas por vírgula."
+            onChange={(e) => setTags2(e.target.value)}
+            value={tags2}
+          />
+        </label>
+        <label>
+          <span>Atividades:</span>
+          <textarea
+            name="atividades"
+            required
+            placeholder="Quais as atividades que seram exercidas?"
+            onChange={(e) => setAtividades(e.target.value)}
+            value={atividades}
+          ></textarea>
+        </label>
+        <label>
+          <span>Senioridade:</span>
+          <textarea
+            name="senioridade"
+            required
+            placeholder="Qual a senioridade para essa vaga?"
+            onChange={(e) => setSenioridade(e.target.value)}
+            value={senioridade}
+          ></textarea>
+        </label>
+        <label>
+          <span>Salário:</span>
+          <textarea
+            name="salario"
+            required
+            placeholder="Informe o salário da vaga."
+            onChange={(e) => setSalario(e.target.value)}
+            value={salario}
+          ></textarea>
+        </label>
+        {!response.loading && <button className="btn">Publicar Vaga!</button>}
         {response.loading && (
           <button className="btn" disabled>
             Aguarde.. .

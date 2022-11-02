@@ -1,5 +1,8 @@
 .post_detail {
    margin-bottom: 2em;
+   background-color: #00a58151;
+   padding: 20px 80px 50px 80px;
+   border-radius: 20px;
  }
  
  .post_detail img {

@@ -14,14 +14,31 @@ const Post = () => {
       {post && (
         <>
           <h1>{post.title}</h1>
-          <img src={post.image} alt={post.title} />
-          <p>{post.body}</p>
-          <h3>Este post trata sobre:</h3>
+          <h3>Requisitos:</h3>
+          <p>{post.requisitos}</p>
+          <h3>Atividades:</h3>
+          <p>{post.atividades}</p>
+          <h3>Senioridade:</h3>
+          <p>{post.senioridade}</p>
+          <h3>Salário:</h3>
+          <p>{post.salario}</p>
+          <h3>Tecnologias Necessárias:</h3>
           <div className={styles.tags}>
             {post.tags.map((tag) => (
               <p key={tag}>
-                <span>#</span>
-                {tag}
+                <span className="btn btn-outline-tags">
+                  {tag}
+                </span>
+              </p>
+            ))}
+          </div>
+          <h3>Tecnologias Necessárias:</h3>
+          <div className={styles.tags}>
+            {post.tags2.map((tag) => (
+              <p key={tag}>
+                <span className="btn btn-outline-tags">
+                  {tag}
+                </span>
               </p>
             ))}
           </div>

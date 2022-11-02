@@ -4,5 +4,9 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   background-color: #edf3f6;
+   background-color: #00a581;
+}
+
+.footer p {
+   font-weight: 600;
 }
