@@ -7,6 +7,7 @@ const PostDetail = ({ post }) => {
     <div className={styles.post_detail}>
       <h2>{post.title}</h2>
       <p className={styles.createdby}>por: {post.createdBy}</p>
+      <FontAwesomeIcon icon="fa-solid fa-sack-dollar" />
       <div className={styles.tags}>
         {post.tags.map((tag) => (
           <p key={tag}>

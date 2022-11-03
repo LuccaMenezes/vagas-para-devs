@@ -21,26 +21,6 @@ const Navbar = () => {
             Home
           </NavLink>
       </li>
-      {!user && (
-         <>
-            <li>
-          <NavLink
-            to="/login"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-          >
-            Login
-          </NavLink>
-      </li>
-      <li>
-          <NavLink
-            to="/register"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-          >
-            Cadastrar
-          </NavLink>
-      </li>
-         </>
-      )}
       {user && (
          <>
          <li>
@@ -73,6 +53,26 @@ const Navbar = () => {
          <li>
             <button onClick={logout}>Sair</button>
          </li>
+      )}
+      {!user && (
+         <>
+            <li>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            Login
+          </NavLink>
+      </li>
+      <li>
+          <NavLink
+            to="/register"
+            className={styles.cadastrar}
+          >
+            Cadastrar
+          </NavLink>
+      </li>
+         </>
       )}
       </ul>
     </nav>

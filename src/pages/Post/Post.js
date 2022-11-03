@@ -32,16 +32,6 @@ const Post = () => {
               </p>
             ))}
           </div>
-          <h3>Tecnologias Necessárias:</h3>
-          <div className={styles.tags}>
-            {post.tags2.map((tag) => (
-              <p key={tag}>
-                <span className="btn btn-outline-tags">
-                  {tag}
-                </span>
-              </p>
-            ))}
-          </div>
         </>
       )}
     </div>

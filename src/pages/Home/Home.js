@@ -36,6 +36,7 @@ const Home = () => {
           type="text"
           placeholder="Busque por tecnologias que pretende trabalhar"
           onChange={(e) => setQuery(e.target.value)}
+          className={styles.search}
         />
         <button className="btn btn-dark">Pesquisar</button>
       </form>

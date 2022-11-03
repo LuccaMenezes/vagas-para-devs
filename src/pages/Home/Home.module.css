@@ -16,6 +16,7 @@
  .search_form input {
    margin-right: 10px;
    width: 50%;
+   
  }
  
  .noposts {
@@ -32,4 +33,8 @@
 
  .spanTitle {
   color: #00a581;
+ }
+ 
+ .search {
+  
  }
