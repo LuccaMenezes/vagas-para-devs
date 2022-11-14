@@ -10,9 +10,9 @@ const CreatePost = () => {
   const [requisitos, setRequisitos] = useState("");
   const [atividades, setAtividades] = useState("");
   const [senioridade, setSenioridade] = useState("");
+  const [trabalho, setTrabalho] = useState("");
   const [salario, setSalario] = useState("");
   const [tags, setTags] = useState([]);
-  const [tags2, setTags2] = useState([]);
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
@@ -29,7 +29,7 @@ const CreatePost = () => {
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
     // check values
-    if (!title || !requisitos || !tags || !atividades || !senioridade || !salario) {
+    if (!title || !requisitos || !tags || !atividades || !senioridade || !salario || !trabalho) {
       setFormError("Por favor, preencha todos os campos!");
     }
 
@@ -41,6 +41,7 @@ const CreatePost = () => {
       atividades,
       senioridade,
       salario,
+      trabalho,
       tags: tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
@@ -54,8 +55,8 @@ const CreatePost = () => {
       atividades,
       senioridade,
       salario,
+      trabalho,
       tags: tagsArray,
-      tags2: tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
     });
@@ -102,17 +103,6 @@ const CreatePost = () => {
           />
         </label>
         <label>
-          <span>Tecnologias Desejáveis:</span>
-          <input
-            type="text"
-            name="tags2"
-            required
-            placeholder="Insira as tecnologias desejáveis separadas por vírgula."
-            onChange={(e) => setTags2(e.target.value)}
-            value={tags2}
-          />
-        </label>
-        <label>
           <span>Atividades:</span>
           <textarea
             name="atividades"
@@ -140,6 +130,16 @@ const CreatePost = () => {
             placeholder="Informe o salário da vaga."
             onChange={(e) => setSalario(e.target.value)}
             value={salario}
+          ></textarea>
+        </label>
+        <label>
+          <span>Modelo de Trabalho:</span>
+          <textarea
+            name="trabalho"
+            required
+            placeholder="Informe o modelo de trabalho."
+            onChange={(e) => setTrabalho(e.target.value)}
+            value={trabalho}
           ></textarea>
         </label>
         {!response.loading && <button className="btn">Publicar Vaga!</button>}

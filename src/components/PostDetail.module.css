@@ -32,3 +32,11 @@
    font-size: 0.8em;
    margin-bottom: 1em;
  }
+
+ .salario {
+  display: flex;
+  align-items: center;
+ }
+ .salario p{
+  margin-left: 10px;
+ }
